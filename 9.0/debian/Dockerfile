@@ -76,6 +76,11 @@ ENV JSON_MODULE_ARGS=${JSON_MODULE_ARGS}
 ENV BLOOM_MODULE_ARGS=${BLOOM_MODULE_ARGS}
 ENV LDAP_MODULE_ARGS=${LDAP_MODULE_ARGS}
 
+RUN set -eux; \
+    apt-get update; \
+    apt-get install -y --no-install-recommends python3; \
+    apt-get clean && rm -rf /var/lib/apt/lists/*;
+
 RUN mkdir -p /usr/lib/valkey;
 
 # Copy built modules from the build stage
