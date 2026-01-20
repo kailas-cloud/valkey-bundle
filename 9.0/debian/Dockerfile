@@ -1,6 +1,7 @@
 #
-# Forked from valkey-io/valkey-bundle with module args support
-# Example: docker build --build-arg SEARCH_MODULE_ARGS="use-coordinator yes" .
+# NOTE: THIS DOCKERFILE IS GENERATED VIA "apply-templates.sh"
+#
+# PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
 FROM docker.io/valkey/valkey:9.0.0-trixie AS build
