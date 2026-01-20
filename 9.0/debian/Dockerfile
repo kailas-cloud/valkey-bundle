@@ -84,8 +84,11 @@ COPY --from=build /opt/valkey-bloom/target/release/libvalkey_bloom.so /usr/lib/v
 COPY --from=build /opt/valkey-search/.build-release/libsearch.so /usr/lib/valkey/libsearch.so
 COPY --from=build /opt/valkey-ldap/target/release/libvalkey_ldap.so /usr/lib/valkey/libvalkey_ldap.so
 
-COPY bundle-docker-entrypoint.sh /usr/local/bin/
-ENTRYPOINT ["bundle-docker-entrypoint.sh"]
+# Copy Python entrypoint (Python 3 is already installed in base image)
+COPY bundle-docker-entrypoint.py /usr/local/bin/bundle-docker-entrypoint
+RUN chmod +x /usr/local/bin/bundle-docker-entrypoint
+
+ENTRYPOINT ["bundle-docker-entrypoint"]
 
 EXPOSE 6379
 CMD ["valkey-server"]
